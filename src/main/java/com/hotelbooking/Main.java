@@ -7,23 +7,50 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    private static Stage primaryStage;
+
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hotelbooking/views/login.fxml"));
-            AnchorPane root = loader.load();
-            
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
-            
-            primaryStage.setTitle("Hotel Booking System - Login");
-            primaryStage.setScene(scene);
+            Main.primaryStage = primaryStage;
             primaryStage.setResizable(false);
-            primaryStage.show();
-            
-        } catch(Exception e) {
+
+            // Load the login view as the initial view
+            loadView("/com/hotelbooking/views/login.fxml", "Hotel Booking System - Login");
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Loads a view (FXML file) into the primary stage.
+     *
+     * @param fxmlPath The path to the FXML file.
+     * @param title    The title of the window.
+     */
+    public static void loadView(String fxmlPath, String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxmlPath));
+            AnchorPane root = loader.load();
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Main.class.getResource("/styles/main.css").toExternalForm());
+
+            primaryStage.setTitle(title);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Returns the primary stage (main window) of the application.
+     *
+     * @return The primary stage.
+     */
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     public static void main(String[] args) {

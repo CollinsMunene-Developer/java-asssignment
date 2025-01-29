@@ -1,0 +1,15 @@
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotelbooking.controllers.RoomController">
+    <TextField fx:id="roomTypeField" layoutX="50" layoutY="50" promptText="Room Type"/>
+    <TextField fx:id="priceField" layoutX="50" layoutY="100" promptText="Price"/>
+    <Button layoutX="50" layoutY="150" text="Add Room" onAction="#handleAddRoom"/>
+    <Button layoutX="150" layoutY="150" text="Update Availability" onAction="#handleUpdateAvailability"/>
+
+    <TableView fx:id="roomTable" layoutX="50" layoutY="200">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="roomTypeColumn" text="Room Type" />
+            <TableColumn fx:id="priceColumn" text="Price" />
+            <TableColumn fx:id="availabilityColumn" text="Availability" />
+        </columns>
+    </TableView>
+</AnchorPane>
