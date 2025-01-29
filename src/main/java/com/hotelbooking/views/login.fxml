@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hotelbooking.controllers.LoginController"
+            prefHeight="400.0" prefWidth="600.0"
+            styleClass="login-container">
+
+    <VBox alignment="CENTER" spacing="20.0" AnchorPane.leftAnchor="0.0" 
+          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" 
+          AnchorPane.bottomAnchor="0.0">
+        
+        <!-- Header -->
+        <Text styleClass="login-header" text="Hotel Booking System"/>
+        
+        <!-- Login Form -->
+        <VBox alignment="CENTER" spacing="15.0" styleClass="login-form" 
+              maxWidth="350.0" padding="20.0">
+            
+            <!-- Username Field -->
+            <TextField fx:id="usernameField" 
+                      promptText="Username"
+                      styleClass="login-field"/>
+            
+            <!-- Password Field -->
+            <PasswordField fx:id="passwordField" 
+                          promptText="Password"
+                          styleClass="login-field"/>
+            
+            <!-- Error Label -->
+            <Label fx:id="errorLabel" 
+                   styleClass="error-label"
+                   visible="false"
+                   wrapText="true"/>
+            
+            <!-- Login Button -->
+            <Button fx:id="loginButton" 
+                    text="Login"
+                    onAction="#handleLogin"
+                    styleClass="login-button"
+                    maxWidth="Infinity"/>
+        </VBox>
+        
+        <!-- Footer -->
+        <Text styleClass="login-footer" 
+              text="© 2025 Hotel Booking System"/>
+    </VBox>
+
+</AnchorPane>

@@ -1,0 +1,20 @@
+CREATE TABLE Rooms (
+    ID SERIAL PRIMARY KEY,
+    RoomType VARCHAR(50) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    Availability BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE Customers (
+    ID SERIAL PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    ContactInfo VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Bookings (
+    ID SERIAL PRIMARY KEY,
+    RoomID INT REFERENCES Rooms(ID),
+    CustomerID INT REFERENCES Customers(ID),
+    CheckInDate DATE NOT NULL,
+    CheckOutDate DATE NOT NULL
+);
