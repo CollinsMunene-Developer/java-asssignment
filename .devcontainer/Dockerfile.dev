@@ -1,0 +1,31 @@
+FROM mcr.microsoft.com/devcontainers/java:17
+
+# Install necessary packages
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+    maven \
+    git \
+    wget \
+    unzip \
+    # Clean up
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install JavaFX SDK
+RUN wget https://download2.gluonhq.com/openjfx/17/openjfx-17_linux-x64_bin-sdk.zip \
+    && unzip openjfx-17_linux-x64_bin-sdk.zip \
+    && mv javafx-sdk-17 /opt/ \
+    && rm openjfx-17_linux-x64_bin-sdk.zip
+
+# Install Scene Builder
+RUN wget https://download2.gluonhq.com/scenebuilder/17.0.0/install/linux/SceneBuilder-17.0.0.deb \
+    && dpkg -i SceneBuilder-17.0.0.deb \
+    && rm SceneBuilder-17.0.0.deb
+
+# Set environment variables
+ENV PATH="$PATH:/opt/javafx-sdk-17/bin"
+ENV JAVAFX_HOME="/opt/javafx-sdk-17"
+
+# Set the working directory
+WORKDIR /workspace
